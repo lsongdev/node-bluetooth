@@ -1,0 +1,40 @@
+{
+  "name": "node-bluetooth",
+  "version": "1.0.0",
+  "description": "Bluetooth serial port communication for Node.js",
+  "keywords": [
+    "bluetooth"
+  ],
+  "main": "index.js",
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "dependencies": {
+    "bindings": "1.1.x",
+    "nan": "^2.3.5"
+  },
+  "engines": {
+    "node": ">= 0.8.x",
+    "npm": ">= 1.1.x"
+  },
+  "scripts": {
+    "install": "node-gyp configure build",
+    "install-debug": "node-gyp configure build --debug"
+  },
+  "license": "MIT",
+  "author": "lsong",
+  "directories": {
+    "example": "example"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/song940/node-bluetooth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/song940/node-bluetooth/issues"
+  },
+  "homepage": "https://github.com/song940/node-bluetooth#readme"
+}
