@@ -3,9 +3,12 @@
 Bluetooth serial port communication for Node.js
 
 ### Installation
+
 ```bash
 $ npm install node-bluetooth --save
 ```
+
+**This package are require `node-gyp` installed .**
 
 ### Example
 ```js
