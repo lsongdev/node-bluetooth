@@ -2,13 +2,23 @@
 
 Bluetooth serial port communication for Node.js
 
+
+### Requirements
+
+**This package require `node-gyp` installed .**
+
+#### Linux
+
+You'll need libbluetooth-dev. On Ubuntu/Debian : ``` $ sudo apt-get install libbluetooth-dev```
+
 ### Installation
 
 ```bash
 $ npm install node-bluetooth --save
 ```
 
-**This package are require `node-gyp` installed .**
+
+
 
 ### Example
 ```js
