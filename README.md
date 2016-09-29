@@ -2,44 +2,78 @@
 
 Bluetooth serial port communication for Node.js
 
+
+### Requirements
+
+**This package require `node-gyp` installed .**
+
+#### Linux
+
+You'll need libbluetooth-dev. On Ubuntu/Debian : ``` $ sudo apt-get install libbluetooth-dev```
+
 ### Installation
+
 ```bash
 $ npm install node-bluetooth --save
 ```
 
+
+
+
 ### Example
+
+#### create device
 ```js
 const bluetooth = require('node-bluetooth');
 
+// create bluetooth device instance
 const device = new bluetooth.DeviceINQ();
+```
 
-device.on('found', function(address, name){
+#### list already paired devices
+```js
+device.listPairedDevices(console.log);
+```
+will output
+```js
+➜  node-bluetooth git:(master) ✗ node example/index.js
+[ { name: 'Lsong’s Trackpad',
+    address: 'd0-a6-37-f1-e7-87',
+    services: [ [Object], [Object] ] },
+  { name: 'Lsong\'s iPhone',
+    address: 'dc-2b-2a-82-76-29',
+    services: [ [Object], [Object], [Object], [Object] ] },
+  { name: 'Lsong’s Keyboard',
+    address: '60-c5-47-19-d3-76',
+    services: [ [Object], [Object] ] } ]
+```
 
+
+#### find devices
+
+```js
+device
+.on('finished',  console.log.bind(console, 'finished'))
+.on('found', function found(address, name){
   console.log('Found: ' + address + ' with name ' + name);
+}).inquire();
+```
 
-  device.findSerialPortChannel(address, function(channel){
-    
-    console.log('Found RFCOMM channel for serial port on %s: ', name, channel);
+will output
 
-  });
-  
-});
-
-device.on('finished', function(){
-  
-  console.log('scan finished.');
-  
-});
-
-device.inquire();
-
+```
+➜  node-bluetooth git:(master) ✗ node example/index.js
+Found: 22-22-a3-0d-63-09 with name Meizu MX4 Pro
+Found: dc-2b-2a-82-76-29 with name Lsong's iPhone
+Found: 38-bc-1a-37-2d-d4 with name MEIZU MX5
+finished
 ```
 
 ### API
 
-- node-bluetooth.Connection()
-- node-bluetooth.DeviceINQ()
-- node-bluetooth.connect()
+- [bluetooth.Connection](#Connection)
+- [bluetooth.DeviceINQ](#DeviceINQ)
+- [bluetooth.connect](#connect)
 
 ### Contributing
 - Fork this Repo first

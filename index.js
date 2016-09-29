@@ -14,8 +14,27 @@ function Bluetooth(){
  * [function description]
  * @return {[type]} [description]
  */
- function Connection(port){
-  
+function Connection(port){
+  this.port = port;
+};
+/**
+ * [write description]
+ * @param  {[type]}   data     [description]
+ * @param  {Function} callback [description]
+ * @return {[type]}            [description]
+ */
+Connection.prototype.write = function(data, callback){
+  this.port.write(data, callback);
+  return this;
+};
+/**
+ * [close description]
+ * @param  {Function} callback [description]
+ * @return {[type]}            [description]
+ */
+Connection.prototype.close = function(callback){
+  this.port.close(callback);
+  return this;
 };
 
 /**
