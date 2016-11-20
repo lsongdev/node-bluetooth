@@ -14,7 +14,9 @@ function Bluetooth(){
  * [function description]
  * @return {[type]} [description]
  */
-function Connection(port){
+function Connection(address, port){
+  EventEmitter.call(this);
+  this.address = address;
   this.port = port;
 };
 /**
@@ -24,7 +26,7 @@ function Connection(port){
  * @return {[type]}            [description]
  */
 Connection.prototype.write = function(data, callback){
-  this.port.write(data, callback);
+  this.port.write(data, this.address, callback);
   return this;
 };
 /**
@@ -67,7 +69,7 @@ Bluetooth.DeviceINQ  = inherits(BluetoothSerialPort.DeviceINQ, EventEmitter);
  */
 Bluetooth.connect = function connect(address, channel, callback){
   var port = new BluetoothSerialPort.BTSerialPortBinding(address, channel, function(){
-    callback(null, new Bluetooth.Connection(port));
+    callback(null, new Bluetooth.Connection(address, port));
   }, callback);
 };
 
