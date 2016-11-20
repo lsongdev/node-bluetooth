@@ -67,7 +67,7 @@ Bluetooth.DeviceINQ  = inherits(BluetoothSerialPort.DeviceINQ, EventEmitter);
  */
 Bluetooth.connect = function connect(address, channel, callback){
   var port = new BluetoothSerialPort.BTSerialPortBinding(address, channel, function(){
-    callback(null, new Buletooth.Connection(port));
+    callback(null, new Bluetooth.Connection(port));
   }, callback);
 };
 
