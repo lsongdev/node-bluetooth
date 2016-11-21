@@ -17,9 +17,6 @@ You'll need libbluetooth-dev. On Ubuntu/Debian : ``` $ sudo apt-get install libb
 $ npm install node-bluetooth --save
 ```
 
-
-
-
 ### Example
 
 #### create device
@@ -40,7 +37,7 @@ will output
 [ { name: 'Lsong’s Trackpad',
     address: 'd0-a6-37-f1-e7-87',
     services: [ [Object], [Object] ] },
-  { name: 'Lsong\'s iPhone',
+  { name: 'Lsong’s iPhone',
     address: 'dc-2b-2a-82-76-29',
     services: [ [Object], [Object], [Object], [Object] ] },
   { name: 'Lsong’s Keyboard',
@@ -67,6 +64,21 @@ Found: 22-22-a3-0d-63-09 with name Meizu MX4 Pro
 Found: dc-2b-2a-82-76-29 with name Lsong's iPhone
 Found: 38-bc-1a-37-2d-d4 with name MEIZU MX5
 finished
+```
+
+find serial port channel
+
+```js
+device.findSerialPortChannel(address, function(channel){
+  console.log('Found RFCOMM channel for serial port on %s: ', name, channel);
+  
+  // make bluetooth connect to remote device
+  bluetooth.connect(address, channel, function(err, connection){
+    if(err) return console.error(err);
+    connection.write(new Buffer('Hello!', 'utf-8'));
+  });
+  
+});
 ```
 
 ### API

@@ -1,5 +1,4 @@
 'use strict';
-const util                = require('util');
 const EventEmitter        = require('events');
 const BluetoothSerialPort = require('bindings')('BluetoothSerialPort.node');
 
@@ -14,10 +13,11 @@ function Bluetooth(){
  * [function description]
  * @return {[type]} [description]
  */
-function Connection(address, port){
+function Connection(port, address){
   EventEmitter.call(this);
+  
+  this.port    = port;
   this.address = address;
-  this.port = port;
 };
 /**
  * [write description]
@@ -68,8 +68,8 @@ Bluetooth.DeviceINQ  = inherits(BluetoothSerialPort.DeviceINQ, EventEmitter);
  * @return {[type]}            [description]
  */
 Bluetooth.connect = function connect(address, channel, callback){
-  var port = new BluetoothSerialPort.BTSerialPortBinding(address, channel, function(){
-    callback(null, new Bluetooth.Connection(address, port));
+  var port = new BluetoothSerialPort.BTSerialPortBinding(address, channel, function(err){
+    callback && callback(err, new Bluetooth.Connection(port, address));
   }, callback);
 };
 
