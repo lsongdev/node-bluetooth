@@ -71,13 +71,28 @@ find serial port channel
 ```js
 device.findSerialPortChannel(address, function(channel){
   console.log('Found RFCOMM channel for serial port on %s: ', name, channel);
-  
+
   // make bluetooth connect to remote device
   bluetooth.connect(address, channel, function(err, connection){
     if(err) return console.error(err);
     connection.write(new Buffer('Hello!', 'utf-8'));
   });
-  
+
+});
+```
+
+create connection to device, read and write
+
+```js
+// make bluetooth connect to remote device
+bluetooth.connect(address, channel, function(err, connection){
+  if(err) return console.error(err);
+
+  connection.on('data', (buffer) => {
+    console.log('received message:', buffer.toString());
+  });
+
+  connection.write(new Buffer('Hello!', 'utf-8'));
 });
 ```
 
