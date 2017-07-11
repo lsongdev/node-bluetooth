@@ -15,9 +15,17 @@ function Bluetooth(){
  */
 function Connection(port, address){
   EventEmitter.call(this);
-  
+  const self = this;
   this.port    = port;
   this.address = address;
+  this.port.on('data', function(buffer){
+    if(buffer.length > 0){
+      self.port.read(function(err, data){
+        if(err) return self.emit('error', err);
+        self.emit('data', data);
+      });
+    }
+  });
 };
 /**
  * [write description]
