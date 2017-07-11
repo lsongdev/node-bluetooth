@@ -20,7 +20,7 @@ function Connection(port, address){
   this.address = address;
   this.port.on('data', function(buffer){
     if(buffer.length > 0){
-      this.port.read(function(err, data){
+      self.port.read(function(err, data){
         if(err) return self.emit('error', err);
         self.emit('data', data);
       });
