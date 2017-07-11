@@ -1,6 +1,6 @@
 {
   "name": "node-bluetooth",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Bluetooth serial port communication for Node.js",
   "keywords": [
     "bluetooth"
