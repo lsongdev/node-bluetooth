@@ -18,14 +18,18 @@ function Connection(port, address){
   const self = this;
   this.port    = port;
   this.address = address;
-  this.port.on('data', function(buffer){
-    if(buffer.length > 0){
-      self.port.read(function(err, data){
-        if(err) return self.emit('error', err);
-        self.emit('data', data);
-      });
-    }
-  });
+  const read = function () {
+    process.nextTick(function() {
+      if (self.isOpen()) {
+        self.port.read(function(err, data){
+          if(err) return self.emit('error', err);
+          self.emit('data', data);
+          read();
+        });
+      }
+    });
+  }
+  read();
 };
 /**
  * [write description]
@@ -44,7 +48,12 @@ Connection.prototype.write = function(data, callback){
  */
 Connection.prototype.close = function(callback){
   this.port.close(callback);
+  this.port = undefined;
   return this;
+};
+
+Connection.prototype.isOpen = function(callback){
+  return this.port !== undefined;
 };
 
 /**
