@@ -23,7 +23,9 @@ device
         console.log('received message:', buffer.toString());
       });
 
-      connection.write(new Buffer('Hello!', 'utf-8'));
+      connection.write(new Buffer('Hello!', 'utf-8'), () => {
+        console.log('wrote');
+      });
     });
 
   });
