@@ -18,12 +18,20 @@ function Connection(port, address){
   const self = this;
   this.port    = port;
   this.address = address;
+  this.buffer = new Buffer(0);
+  this.delimiter = Buffer.from('\n', 'utf8');
   const read = function () {
     process.nextTick(function() {
       if (self.isOpen()) {
-        self.port.read(function(err, data){
+        self.port.read(function(err, chunk){
           if(err) return self.emit('error', err);
-          self.emit('data', data);
+          let data = Buffer.concat([self.buffer, chunk]);
+          let position;
+          while ((position = data.indexOf(self.delimiter)) !== -1) {
+            self.emit('data', data.slice(0, position));
+            data = data.slice(position + self.delimiter.length);
+          }
+          self.buffer = data;
           read();
         });
       }
