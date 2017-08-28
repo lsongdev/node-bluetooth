@@ -25,13 +25,17 @@ function Connection(port, address){
       if (self.isOpen()) {
         self.port.read(function(err, chunk){
           if(err) return self.emit('error', err);
-          let data = Buffer.concat([self.buffer, chunk]);
-          let position;
-          while ((position = data.indexOf(self.delimiter)) !== -1) {
-            self.emit('data', data.slice(0, position));
-            data = data.slice(position + self.delimiter.length);
+          if (self.delimiter) {
+            let data = Buffer.concat([self.buffer, chunk]);
+            let position;
+            while ((position = data.indexOf(self.delimiter)) !== -1) {
+              self.emit('data', data.slice(0, position));
+              data = data.slice(position + self.delimiter.length);
+            }
+            self.buffer = data;
+          } else {
+            self.emit('data', chunk);
           }
-          self.buffer = data;
           read();
         });
       }
