@@ -19,7 +19,6 @@ function Connection(port, address){
   this.port    = port;
   this.address = address;
   this.buffer = new Buffer(0);
-  this.delimiter = Buffer.from('\n', 'utf8');
   const read = function () {
     process.nextTick(function() {
       if (self.isOpen()) {
