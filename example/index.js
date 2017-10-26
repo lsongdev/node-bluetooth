@@ -19,6 +19,7 @@ device
     bluetooth.connect(address, channel, function(err, connection){
       if(err) return console.error(err);
 
+      connection.delimiter = Buffer.from('\n', 'utf8');
       connection.on('data', (buffer) => {
         console.log('received message:', buffer.toString());
       });
