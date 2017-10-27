@@ -1,4 +1,5 @@
 ## node-bluetooth ![NPM version](https://img.shields.io/npm/v/node-bluetooth.svg?style=flat)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fsong940%2Fnode-bluetooth.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fsong940%2Fnode-bluetooth?ref=badge_shield)
 
 Bluetooth serial port communication for Node.js
 
@@ -134,3 +135,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 ---
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fsong940%2Fnode-bluetooth.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fsong940%2Fnode-bluetooth?ref=badge_large)
