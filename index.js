@@ -57,9 +57,18 @@ Connection.prototype.write = function(data, callback){
  * @param  {Function} callback [description]
  * @return {[type]}            [description]
  */
-Connection.prototype.close = function(callback){
-  this.port.close(callback);
-  this.port = undefined;
+Connection.prototype.close = function(address, callback){
+  if (typeof address === 'function') {
+    callback = address;
+    address = null;
+  }
+  try {
+    this.port.close(address);
+    this.port = undefined;
+    callback && callback();
+  } catch(e) {
+    callback && callback(e);
+  }
   return this;
 };
 
