@@ -75,7 +75,9 @@ device.findSerialPortChannel(address, function(channel){
   // make bluetooth connect to remote device
   bluetooth.connect(address, channel, function(err, connection){
     if(err) return console.error(err);
-    connection.write(new Buffer('Hello!', 'utf-8'));
+    connection.write(new Buffer('Hello!', 'utf-8'), () => {
+      console.log("wrote");
+    });
   });
 
 });
@@ -92,7 +94,9 @@ bluetooth.connect(address, channel, function(err, connection){
     console.log('received message:', buffer.toString());
   });
 
-  connection.write(new Buffer('Hello!', 'utf-8'));
+  connection.write(new Buffer('Hello!', 'utf-8'), () => {
+    console.log("wrote");
+  });
 });
 ```
 
