@@ -14,7 +14,8 @@ class Bluetooth extends EventEmitter {
    * @return {[type]}            [description]
    */
   static connect(address, channel, callback) {
-    var port = new BluetoothSerialPort.BTSerialPortBinding(address, channel, function (err) {
+    const { BTSerialPortBinding } = BluetoothSerialPort;
+    const port = new BTSerialPortBinding(address, channel, function (err) {
       callback && callback(err, new Bluetooth.Connection(port, address));
     }, callback);
     return port;

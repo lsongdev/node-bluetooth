@@ -4,7 +4,7 @@ const bluetooth = require('../');
 const device = new bluetooth.DeviceINQ();
 
 device
-.on('finished',  console.log.bind(console, 'finished'))
+.on('finished', console.log.bind(console, 'finished'))
 .on('found', function found(address, name){
 
   console.log('Found: ' + address + ' with name ' + name);
