@@ -45,8 +45,8 @@ using namespace std;
 using namespace node;
 using namespace v8;
 
-uv_mutex_t write_queue_mutex;
-ngx_queue_t write_queue;
+static uv_mutex_t write_queue_mutex;
+static ngx_queue_t write_queue;
 
 void BTSerialPortBinding::EIO_Connect(uv_work_t *req) {
     connect_baton_t *baton = static_cast<connect_baton_t *>(req->data);
@@ -197,7 +197,7 @@ void BTSerialPortBinding::EIO_AfterRead(uv_work_t *req) {
         Local<Object> globalObj = Nan::GetCurrentContext()->Global();
         Local<Function> bufferConstructor = Local<Function>::Cast(globalObj->Get(Nan::New("Buffer").ToLocalChecked()));
         Handle<Value> constructorArgs[1] = { Nan::New<v8::Integer>(baton->size) };
-        Local<Object> resultBuffer = bufferConstructor->NewInstance(1, constructorArgs);
+        Local<Object> resultBuffer = Nan::NewInstance(bufferConstructor, 1, constructorArgs).ToLocalChecked();
         memcpy(Buffer::Data(resultBuffer), baton->result, baton->size);
 
         argv[0] = Nan::Undefined();
@@ -349,6 +349,7 @@ NAN_METHOD(BTSerialPortBinding::Close) {
     BTSerialPortBinding* rfcomm = Nan::ObjectWrap::Unwrap<BTSerialPortBinding>(info.This());
 
     if (rfcomm->s != 0) {
+        shutdown(rfcomm->s, SHUT_RDWR);
         close(rfcomm->s);
         write(rfcomm->rep[1], "close", (strlen("close")+1));
         rfcomm->s = 0;
