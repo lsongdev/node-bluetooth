@@ -40,7 +40,7 @@ class BTSerialPortBinding : public Nan::ObjectWrap {
 #endif
 
         static Nan::Persistent<v8::FunctionTemplate> s_ct;
-        static void Init(v8::Handle<v8::Object> exports);
+        static void Init(v8::Local<v8::Object> exports);
         static NAN_METHOD(Write);
         static NAN_METHOD(Close);
         static NAN_METHOD(Read);
