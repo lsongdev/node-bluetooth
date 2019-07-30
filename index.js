@@ -24,6 +24,7 @@ class Bluetooth extends EventEmitter {
 
 Bluetooth.DeviceINQ = require('./lib/device');
 Bluetooth.Connection = require('./lib/connection');
+Bluetooth.SerialPort = BluetoothSerialPort;
 
 /**
  * [exports description]
