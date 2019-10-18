@@ -13,28 +13,32 @@
   ],
   "dependencies": {
     "bindings": "1.2.x",
-    "nan": "latest"
+    "nan": "latest",
+    "prebuild-install": "^5.3.2"
   },
   "engines": {
     "node": ">= 0.8.x",
     "npm": ">= 1.1.x"
   },
   "scripts": {
-    "install": "node-gyp configure build",
-    "install-debug": "node-gyp configure build --debug"
+    "install": "prebuild-install || node-gyp configure build",
+    "install-debug": "prebuild-install --debug || node-gyp configure build --debug",
+    "prebuild": "prebuild --all --force --strip --verbose"
   },
   "license": "MIT",
   "author": "lsong",
   "directories": {
     "example": "example"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prebuild": "^9.1.1"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/song940/node-bluetooth.git"
+    "url": "git+https://github.com/ekoeryanto/node-bluetooth.git"
   },
   "bugs": {
-    "url": "https://github.com/song940/node-bluetooth/issues"
+    "url": "https://github.com/ekoeryanto/node-bluetooth/issues"
   },
-  "homepage": "https://github.com/song940/node-bluetooth#readme"
+  "homepage": "https://github.com/ekoeryanto/node-bluetooth#readme"
 }
