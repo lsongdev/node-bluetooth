@@ -35,10 +35,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ekoeryanto/node-bluetooth.git"
+    "url": "git+https://github.com/song940/node-bluetooth.git"
   },
   "bugs": {
-    "url": "https://github.com/ekoeryanto/node-bluetooth/issues"
+    "url": "https://github.com/song940/node-bluetooth/issues"
   },
-  "homepage": "https://github.com/ekoeryanto/node-bluetooth#readme"
+  "homepage": "https://github.com/song940/node-bluetooth#readme"
 }
