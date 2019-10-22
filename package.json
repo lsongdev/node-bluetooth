@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "bindings": "1.2.x",
-    "nan": "latest",
+    "nan": "~2.13.0"
     "prebuild-install": "^5.3.2"
   },
   "engines": {
