@@ -28,7 +28,9 @@
   "directories": {
     "example": "example"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prebuild": "^9.1.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/song940/node-bluetooth.git"
