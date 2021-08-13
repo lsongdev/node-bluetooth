@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "bindings": "^1.5.0",
-    "bluetooth-serial-port": "^2.2.6",
+    "bluetooth-serial-port": "eelcocramer/node-bluetooth-serial-port#next-release",
     "copyfiles": "^2.1.1"
   },
   "engines": {
