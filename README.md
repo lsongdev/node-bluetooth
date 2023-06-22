@@ -2,14 +2,13 @@
 
 Bluetooth serial port communication for Node.js
 
-
 ### Requirements
 
-**This package require `node-gyp` installed .**
+**This package requires `node-gyp` to be installed.**
 
 #### Linux
 
-You'll need libbluetooth-dev. On Ubuntu/Debian : ``` $ sudo apt-get install libbluetooth-dev```
+You'll need `libbluetooth-dev` On Ubuntu/Debian : ``` $ sudo apt-get install libbluetooth-dev```
 
 ### Installation
 
@@ -17,21 +16,21 @@ You'll need libbluetooth-dev. On Ubuntu/Debian : ``` $ sudo apt-get install libb
 $ npm install node-bluetooth --save
 ```
 
-### Example
+### Examples
 
-#### create device
+#### Create device
 ```js
 const bluetooth = require('node-bluetooth');
 
-// create bluetooth device instance
+// Create a bluetooth device instance
 const device = new bluetooth.DeviceINQ();
 ```
 
-#### list already paired devices
+#### List already paired devices
 ```js
 device.listPairedDevices(console.log);
 ```
-will output
+Output:
 ```js
 ➜  node-bluetooth git:(master) ✗ node example/index.js
 [ { name: 'Lsong’s Trackpad',
@@ -46,7 +45,7 @@ will output
 ```
 
 
-#### find devices
+#### Find devices
 
 ```js
 device
@@ -55,9 +54,7 @@ device
   console.log('Found: ' + address + ' with name ' + name);
 }).scan();
 ```
-
-will output
-
+Output:
 ```
 ➜  node-bluetooth git:(master) ✗ node example/index.js
 Found: 22-22-a3-0d-63-09 with name Meizu MX4 Pro
@@ -65,14 +62,12 @@ Found: dc-2b-2a-82-76-29 with name Lsong's iPhone
 Found: 38-bc-1a-37-2d-d4 with name MEIZU MX5
 finished
 ```
-
-find serial port channel
-
+Find serial port channel
 ```js
 device.findSerialPortChannel(address, function(channel){
   console.log('Found RFCOMM channel for serial port on %s: ', name, channel);
 
-  // make bluetooth connect to remote device
+  // Connect to a remote device
   bluetooth.connect(address, channel, function(err, connection){
     if(err) return console.error(err);
     connection.write(new Buffer('Hello!', 'utf-8'), () => {
@@ -82,11 +77,9 @@ device.findSerialPortChannel(address, function(channel){
 
 });
 ```
-
-create connection to device, read and write
-
+Create connection to a device, read and write
 ```js
-// make bluetooth connect to remote device
+// Connect to a remote device
 bluetooth.connect(address, channel, function(err, connection){
   if(err) return console.error(err);
 
